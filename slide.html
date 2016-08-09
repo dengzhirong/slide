@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>html</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type="text/css">
+        * {
+            padding:  0;
+            margin:  0;
+            border:  0;
+        }
+        ul, li {
+            list-style: none;
+        }
+        [data-slide=slide] {
+            height: 400px;
+            width: 100%;
+        }
+        [data-slide=slide] [data-slide=list] {
+            height: 400px;
+        }
+        [data-slide=slide] [data-slide=item] {
+            height: 400px;
+        }
+        .item1 { background: #d07575; }
+        .item2 { background: blue; }
+        .item3 { background: green; }
+        .item4 { background: yellow; }
+        .item5 { background: pink; }
+
+        #slide2 {
+            margin-top:  50px;
+            background: #ccc;
+        }
+        #slide2 [data-slide=item] {
+            font-size: 50px;
+            text-align: center;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="slide.css">
+</head>
+<body>
+<div id="slide1" data-slide = "slide">
+    <ul data-slide = "list">
+        <li class="item1" data-slide="item"></li>
+        <li class="item2" data-slide="item"></li>
+        <li class="item3" data-slide="item"></li>
+        <li class="item4" data-slide="item"></li>
+        <li class="item5" data-slide="item"></li>
+    </ul>
+    <!-- <span data-slide="prev"></span>
+    <span data-slide="next"></span> -->
+</div>
+
+<div id="slide2" data-slide = "slide">
+    <ul data-slide = "list">
+        <li data-slide="item">第一页</li>
+        <li data-slide="item">第二页</li>
+        <li data-slide="item">第三页</li>
+        <li data-slide="item">第四页</li>
+        <li data-slide="item">第五页</li>
+    </ul>
+    <!-- <span data-slide="prev"></span>
+    <span data-slide="next"></span> -->
+</div>
+
+<script type="text/javascript" src="../jquery-2.1.4.min.js"></script>
+<!-- 引入手势库 -->
+<script type="text/javascript" src="hammer.js"></script>
+<!-- 引入slide库 -->
+<script type="text/javascript" src="slide.js"></script>
+
+<script type="text/javascript">
+slide.init($("#slide1"));
+
+slide.init($("#slide2"));
+</script>
+</body>
+</html>

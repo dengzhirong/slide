@@ -1,0 +1,59 @@
+/* slide盒子 */
+[data-slide=slide] {
+    position: relative;
+    overflow: hidden;
+}
+
+[data-slide=slide] [data-slide=list] {
+    position: absolute;
+    left:  0;
+    transition: all .3s;
+    -moz-transition: all .3s; /* Firefox 4 */
+    -webkit-transition: all .3s; /* Safari and Chrome */
+    -o-transition: all .3s; /* Opera */
+}
+
+/* 轮播元素 */
+[data-slide=slide] [data-slide=item] {
+    width: 100%;
+    float:  left;
+    position: relative;
+    z-index: 1;
+}
+
+/* 上下页切换按钮 */
+[data-slide=slide] [data-slide=prev], [data-slide=slide] [data-slide=next] {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    display: inline-block;
+    width: 10%;
+    /* background: rgba(0, 0, 0, .2); */
+    z-index:  200;
+    text-align: center;
+    cursor:  pointer;
+}
+[data-slide=slide] [data-slide=prev]:before, [data-slide=slide] [data-slide=next]:before {
+    position: absolute;
+    top: 50%;
+    left:  50%;
+    margin-top: -30px;
+    margin-left: -14px;
+    font-size: 50px;
+    color: #fff;
+    opacity: .5;
+    text-shadow: 0 0 10px #000;
+    font-family: STHeiti;
+}
+[data-slide=slide] [data-slide=prev] {
+    left:  0;
+}
+[data-slide=slide] [data-slide=next] {
+    right: 0;
+}
+[data-slide=slide] [data-slide=prev]:before {
+    content: "<";
+}
+[data-slide=slide] [data-slide=next]:before {
+    content: ">";
+}
