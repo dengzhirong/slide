@@ -37,6 +37,25 @@
             font-size: 50px;
             text-align: center;
         }
+
+        #slide2 .dotted {
+            position:  absolute;
+            bottom: 0;
+            left: 50%;
+            margin-left: -120px;
+            z-index:  300;
+        }
+        #slide2 .dotted li {
+            width:  30px;
+            height: 30px;
+            border-radius: 50%;
+            margin: 20px;
+            background: green;
+            float: left;
+        }
+        #slide2 .dotted li.active {
+            background: red;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="slide.css">
 </head>
@@ -49,8 +68,6 @@
         <li class="item4" data-slide="item"></li>
         <li class="item5" data-slide="item"></li>
     </ul>
-    <!-- <span data-slide="prev"></span>
-    <span data-slide="next"></span> -->
 </div>
 
 <div id="slide2" data-slide = "slide">
@@ -61,8 +78,6 @@
         <li data-slide="item">第四页</li>
         <li data-slide="item">第五页</li>
     </ul>
-    <!-- <span data-slide="prev"></span>
-    <span data-slide="next"></span> -->
 </div>
 
 <script type="text/javascript" src="../jquery-2.1.4.min.js"></script>
@@ -72,9 +87,38 @@
 <script type="text/javascript" src="slide.js"></script>
 
 <script type="text/javascript">
-slide.init($("#slide1"));
+slide.init({
+    element: $("#slide1"),
+    getIndex: function(index) {
+        console.log("index: " + index);
+    },
+    isShowPrevNextBtn: true
+});
 
-slide.init($("#slide2"));
+var slide2 = slide.init({
+    element: $("#slide2"),
+    getItemsLength: function(itemsLength) {
+        var dotELe = $("<ul></ul>").addClass("dotted");
+        var dotLis = [];
+        for(var i = 0; i < itemsLength; i++) {
+            dotLis.push("<li></li>");
+        }
+        dotELe.append(dotLis.join(" "));
+        $("#slide2").append(dotELe);
+    },
+    getIndex: function(index) {
+        $(".dotted li").eq(index).addClass("active").siblings("li").removeClass('active');
+        console.log("index: " + index);
+    },
+    isShowPrevNextBtn: false
+});
+$(".dotted").delegate("li", "click", function(e) {
+    console.log("2222");
+    e.stopPropagation();
+    console.log("li-index: " + $(this).index());
+    var index = $(this).index();
+    slide2.switchIndex(index);
+});
 </script>
 </body>
 </html>
